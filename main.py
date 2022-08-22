@@ -14,7 +14,7 @@ def helper(message):
                    'задачи\"</b> - добавить задачу в список дел\n<b>add_link</b> - сохранить ссылку\n<b>del_word' \
                    ' \"слово\"</b> - удалить слово из временного массива\n<b>del_dict \"слово\"</b> - удалить слово' \
                    ' и его описание из словаря\n<b>del_todo \"номер задачи\"</b> - удалить задачу под указанным ' \
-                   'номером из списка дел\n<b>del_link \"номер ссылки\"</b> - удалить ссылку под указанным номером '
+                   'номером из списка дел\n<b>del_link \"номер ссылки\"</b> - удалить ссылку под указанным номером'
     bot.send_message(message.chat.id, help_message, parse_mode='html')
 
 
@@ -141,7 +141,6 @@ def add_and_del_data(message):
             send_mess = f'<b>{message.from_user.first_name}</b>, я не нашёл слово <b>{message.text[9:]}</b> в ' \
                         f'твоём словаре!'
             bot.send_message(message.chat.id, send_mess, parse_mode='html')
-
     elif 'del_todo' in message.text:
         with open("todo_list.txt", 'r', encoding='utf-8') as file:
             temp_todo_list = [line.strip() for line in file.readlines()]
