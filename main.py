@@ -167,10 +167,10 @@ def add_and_del_data(message):
         with open("links.txt", 'r', encoding='utf-8') as file:
             temp_links_list = [line.strip() for line in file.readlines()]
         count = 0
-        task = ''
+        link = ''
         for i in range(len(temp_links_list)):
             if message.text[9:] + ')' in temp_links_list[i]:
-                task = temp_links_list[i]
+                link = temp_links_list[i]
                 del temp_links_list[i]
                 count += 1
                 with open("links.txt", 'w', encoding='utf-8') as file:
@@ -180,10 +180,10 @@ def add_and_del_data(message):
                         link_num += 1
                 break
         if count > 0:
-            send_mess = f'<b>{message.from_user.first_name}</b>, я удалил задачу <b>{task[3:]}</b> из списка дел!'
+            send_mess = f'<b>{message.from_user.first_name}</b>, я удалил ссылку <b>{link[3:]}</b> из списка!'
             bot.send_message(message.chat.id, send_mess, parse_mode='html')
         else:
-            send_mess = f'<b>{message.from_user.first_name}</b>, я не нашёл задачу под этим номером в твоём списке дел'
+            send_mess = f'<b>{message.from_user.first_name}</b>, я не нашёл ссылку под этим номером в списке!'
             bot.send_message(message.chat.id, send_mess, parse_mode='html')
     else:
         send_mess = f'<b>{message.from_user.first_name}</b>, я не понимаю эту команду'
