@@ -1,7 +1,7 @@
 import telebot  # импортируем библиотеку для создания ТГ-ботов
 from telebot import types  # импортируем модуль для создания кнопок чата
 
-bot = telebot.TeleBot('2010273573:AAF-chsJjiWh6nlMlk1gR0cYNKHDe7104as')  # присваиваем токен бота из ТГ
+bot = telebot.TeleBot('')  # присваиваем токен бота из ТГ
 
 
 @bot.message_handler(commands=['help'])  # обработчик для считывания команд пользователя
