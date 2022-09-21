@@ -39,41 +39,57 @@ def start(message):
 #  просмотр сохранённых слов
 @bot.message_handler(commands=['view_words'])
 def view_words(message):
-    send_mess = f'<b>{message.from_user.first_name}</b>, вот список новых, для тебя, слов к изучению:'
-    bot.send_message(message.chat.id, send_mess, parse_mode='html')
     with open("temp_word.txt", 'r', encoding='utf-8') as file:
         words_list = [line.strip() for line in file.readlines()]
-        bot.send_message(message.chat.id, ', '.join(words_list), parse_mode='html')
+        if len(words_list) == 0:
+            send_mess = f'<b>{message.from_user.first_name}</b>, твой список слов к изучению пуст!'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+        else:
+            send_mess = f'<b>{message.from_user.first_name}</b>, вот список новых, для тебя, слов к изучению:'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+            bot.send_message(message.chat.id, ', '.join(words_list), parse_mode='html')
 
 
 #  просмотр it-словаря
 @bot.message_handler(commands=['view_dict'])
 def view_dict(message):
-    send_mess = f'<b>{message.from_user.first_name}</b>, вот собранный тобою it-словарик:'
-    bot.send_message(message.chat.id, send_mess, parse_mode='html')
     with open("it_dict.txt", 'r', encoding='utf-8') as file:
         list_values = [line.strip() for line in file.readlines()]
-        bot.send_message(message.chat.id, '\n'.join(list_values), parse_mode='html')
+        if len(list_values) == 0:
+            send_mess = f'<b>{message.from_user.first_name}</b>, твой it-словарик пока пуст!'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+        else:
+            send_mess = f'<b>{message.from_user.first_name}</b>, вот собранный тобою it-словарик:'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+            bot.send_message(message.chat.id, '\n'.join(list_values), parse_mode='html')
 
 
 #  просмотр to do листа
 @bot.message_handler(commands=['to_do_list'])
 def to_do_list(message):
-    send_mess = f'<b>{message.from_user.first_name}</b>, вот твой список дел:'
-    bot.send_message(message.chat.id, send_mess, parse_mode='html')
     with open("todo_list.txt", 'r', encoding='utf-8') as file:
         todo_list = [line.strip() for line in file.readlines()]
-        bot.send_message(message.chat.id, '\n'.join(todo_list), parse_mode='html')
+        if len(todo_list) == 0:
+            send_mess = f'<b>{message.from_user.first_name}</b>, твой список дел пуст!'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+        else:
+            send_mess = f'<b>{message.from_user.first_name}</b>, вот твой список дел:'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+            bot.send_message(message.chat.id, '\n'.join(todo_list), parse_mode='html')
 
 
 #  просмотр списка ссылок
 @bot.message_handler(commands=['view_links'])
 def view_links(message):
-    send_mess = f'<b>{message.from_user.first_name}</b>, вот список сохранённых ссылок:'
-    bot.send_message(message.chat.id, send_mess, parse_mode='html')
     with open("links.txt", 'r', encoding='utf-8') as file:
         links = [line.strip() for line in file.readlines()]
-        bot.send_message(message.chat.id, '\n'.join(links), parse_mode='html')
+        if len(links) == 0:
+            send_mess = f'<b>{message.from_user.first_name}</b>, список сохранённых ссылок пуст!'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+        else:
+            send_mess = f'<b>{message.from_user.first_name}</b>, вот список сохранённых ссылок:'
+            bot.send_message(message.chat.id, send_mess, parse_mode='html')
+            bot.send_message(message.chat.id, '\n'.join(links), parse_mode='html')
 
 
 #  добавление и удаление данных
